@@ -1,13 +1,58 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
-  </head>
-  <body>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>火锅大冒险 - 挖土解谜</title>
+    <meta name="description" content="通过滑动屏幕挖开泥土，引导火锅食材掉进火锅的解谜游戏。">
+    <meta name="keywords" content="火锅, 游戏, 解谜, 挖土, 物理游戏">
+
+    <script src="https://resource.trickle.so/vendor_lib/unpkg/react@18/umd/react.production.min.js"></script>
+    <script src="https://resource.trickle.so/vendor_lib/unpkg/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://resource.trickle.so/vendor_lib/unpkg/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://resource.trickle.so/vendor_lib/unpkg/lucide-static@0.516.0/font/lucide.css" rel="stylesheet">
+
+    <style type="text/tailwindcss">
+    @layer theme {
+        :root {
+            --primary-color: #e11d48; /* Hotpot Red */
+            --secondary-color: #f59e0b; /* Soup Gold */
+            --dirt-color: #8d6e63;
+        }
+    }
+
+    @layer base {
+        body {
+            @apply bg-orange-50 touch-none overscroll-none select-none font-sans text-gray-800;
+        }
+    }
+
+    @layer components {
+        .btn-game {
+            @apply px-6 py-3 bg-[var(--primary-color)] text-white rounded-full font-bold shadow-lg active:scale-95 transition-transform border-4 border-red-700 hover:bg-red-600;
+        }
+        .panel {
+            @apply bg-white/90 backdrop-blur border-4 border-orange-200 rounded-2xl p-6 shadow-xl;
+        }
+    }
+    
+    /* Canvas stacking */
+    .game-layer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    </style>
+</head>
+<body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+    <script type="text/babel" src="utils/gameAssets.js"></script>
+    <script type="text/babel" src="utils/gamePhysics.js"></script>
+    <script type="text/babel" src="components/GameLevel.js"></script>
+    <script type="text/babel" src="components/UIOverlay.js"></script>
+    <script type="text/babel" src="app.js"></script>
+</body>
 </html>
